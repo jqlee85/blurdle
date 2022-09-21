@@ -3,7 +3,7 @@ import {CHAR_EVALUATED_STATE, KeyboardCharEvaluatedState} from '../../types-brai
 
 export interface KeyboardButtonData {
     type: 'letter' | 'submit' | 'backspace';
-    size: 'sm' | 'md';
+    size: 'sm' | 'md' | 'lg';
     value: string;
 }
 

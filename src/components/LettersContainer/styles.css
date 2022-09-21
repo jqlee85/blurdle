@@ -3,22 +3,15 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    width: calc(100vw - 2em);
+    max-width: 400px;
 }
 
 .blurdle-keyboard-row {
     display: flex;
+    width: 100%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-}
-
-.blurdle-letter button {
-    all: unset;
-    background: none;
-    color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    margin: 2px;
-    padding: 5px;
-    cursor: pointer;
+    margin-bottom: 6px;
 }

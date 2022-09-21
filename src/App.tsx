@@ -13,9 +13,8 @@ function App() {
         <GameContainer/>
       </main>
 
-      <aside id="blurdle-keyboard">
-        <LettersContainer/>
-      </aside>
+      
+      <LettersContainer/>
     </div>
   );
 }
