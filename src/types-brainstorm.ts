@@ -66,12 +66,30 @@ export interface Game {
     spaceIndex: number;
     spaceChar?: string;
     spaceStatus: "empty" | "guess" | "evaluated";
-    charEvaluatedState: CharEvaluatedState;
+    charEvaluatedState: SpaceCharEvaluatedState;
   }
-  
-  export type CharEvaluatedState =
-    | "unevaluated"
-    | "correct"
-    | "incorrect"
-    | "wrong_spot_in_stock"
-    | "wrong_spot_out_of_stock";
+
+// Evaluated space enum
+export enum CHAR_EVALUATED_STATE {
+    UNEVALUATED ='UNEVALUATED',
+    CORRECT =  "CORRECT",
+    INCORRECT = "INCORRECT",
+    WRONG_SPOT_IN_STOCK = "WRONG_SPOT_IN_STOCK",
+    WRONG_SPOT_OUT_OF_STOCK = "WRONG_SPOT_OUT_OF_STOCK"
+}  
+
+// Evaluated states for spaces
+export type SpaceCharEvaluatedState =
+    | CHAR_EVALUATED_STATE.UNEVALUATED
+    | CHAR_EVALUATED_STATE.CORRECT
+    | CHAR_EVALUATED_STATE.INCORRECT
+    | CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK
+    | CHAR_EVALUATED_STATE.WRONG_SPOT_OUT_OF_STOCK;
+
+// Evaluated states for keyboard characters
+export type KeyboardCharEvaluatedState =
+    | CHAR_EVALUATED_STATE.UNEVALUATED
+    | CHAR_EVALUATED_STATE.CORRECT
+    | CHAR_EVALUATED_STATE.INCORRECT
+    | CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK;
+
