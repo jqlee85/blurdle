@@ -1,13 +1,18 @@
 import './styles.css';
 
-export interface ILetterProps {
-    onClickHandler?: (e:React.FormEvent<HTMLInputElement>) => void;
-    evaluatedState?: string;
-    letter: string;
+export interface KeyboardButtonData {
+    type: 'letter' | 'submit' | 'backspace';
+    value: string;
 }
 
-export default ({letter = '', onClickHandler = () => {}, evaluatedState = "unevaluated"}) => {
+export interface ILetterProps {
+    onClickHandler?: (value:string) => void;
+    evaluatedState?: string;
+    buttonData: KeyboardButtonData;
+}
+
+export default ({buttonData, onClickHandler = (value:string) => {console.log(value)}, evaluatedState = "unevaluated"}:ILetterProps) => {
     return <div className={`blurdle-letter evaluated-state_${evaluatedState}`}>
-        <button onClick={onClickHandler}>{letter}</button>
+        <button onClick={()=>{onClickHandler(buttonData.value)}}>{buttonData.value}</button>
     </div>;
 }
