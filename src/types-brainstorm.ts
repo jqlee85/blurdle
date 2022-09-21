@@ -18,9 +18,26 @@ export interface Game {
     validChars: ValidChars;
     gameSolution: GameSolution;
   }
-  
+
+// Possible statuses for the game
+export enum GAME_STATUS {
+    UNINITIALIZED = 'UNINITIALIZED',
+    IN_PROGRESS = 'IN_PROGRESS',
+    WON = 'WON',
+    LOST = 'LOST',
+    EXPIRED = 'EXPIRED',
+}
+
+// Possible statuses for the game
+export type GameStatus = 
+    | GAME_STATUS.UNINITIALIZED
+    | GAME_STATUS.IN_PROGRESS
+    | GAME_STATUS.WON
+    | GAME_STATUS.LOST
+    | GAME_STATUS.EXPIRED;
+
   export interface GameState {
-    gameStatus: "uninitialized" | "won" | "lost" | "expired";
+    GameStatus: GameStatus;
     currRow: number; // Necessary, or should this be derived from rowsState?
     rowsState: [RowState];
     revealedInfo: RevealedInfo;
@@ -32,7 +49,7 @@ export interface Game {
   
   export interface CharInfo {
     char: Char;
-    bestInfo: CharEvaluatedState;
+    bestInfo: KeyboardCharEvaluatedState;
   }
   
   export interface ValidChars {
@@ -65,11 +82,25 @@ export interface Game {
   export interface SpaceState {
     spaceIndex: number;
     spaceChar?: string;
-    spaceStatus: "empty" | "guess" | "evaluated";
+    spaceStatus: SpaceStatus;
     charEvaluatedState: SpaceCharEvaluatedState;
   }
 
-// Evaluated space enum
+
+
+// Space fill status
+export enum SPACE_STATUS {
+    EMPTY = 'EMPTY',
+    GUESS = 'GUESS',
+    EVALUATED = 'EVALUATED'
+}
+
+export type SpaceStatus = 
+  | SPACE_STATUS.EMPTY
+  | SPACE_STATUS.GUESS
+  | SPACE_STATUS.EVALUATED;
+
+// Evaluated space states enum
 export enum CHAR_EVALUATED_STATE {
     UNEVALUATED ='UNEVALUATED',
     CORRECT =  "CORRECT",
