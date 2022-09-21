@@ -1,4 +1,4 @@
-import './styles.css';
+import './styles.scss';
 import Row from '../Row';
 
 const rows = [0,0,0,0,0,0]; // Temp rows for styling

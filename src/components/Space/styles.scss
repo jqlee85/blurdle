@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+
+.blurdle-space {
+    all: unset;
+    background: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 18%;
+    aspect-ratio: 1 / 1;
+    margin: 0px 3px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+
+    &.evaluated-state_CORRECT {
+        background-color: $evaluated-correct;
+        border-color: $evaluated-correct;
+    }
+
+    &.evaluated-state_WRONG_SPOT_IN_STOCK {
+        background-color: $evaluated-wrong-spot;
+        border-color: $evaluated-wrong-spot;
+    }
+
+    &.evaluated-state_INCORRECT {
+        background-color: $evaluated-incorrect;
+        border-color: $evaluated-incorrect;
+    }
+
+    @media screen and (min-width: 401px) {
+        font-size: 3em;
+    }
+    
+    @media screen and (min-width: 350px) and (max-width: 400px) {
+        font-size: 2.5em;
+    }
+
+}
+
+

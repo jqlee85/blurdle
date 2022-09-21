@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import GameContainer from './components/GameContainer';
 import LettersContainer from './components/LettersContainer';
 
