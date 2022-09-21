@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import './styles.css';
+import { SpaceCharEvaluatedState } from '../../types-brainstorm';
+import './styles.scss';
 
 export interface ISpaceProps {
     charFromState?: string;
     children?: React.ReactNode;
     onChangeHandler?: (e:React.FormEvent<HTMLInputElement>) => void;
     fillState?: string;
-    evaluatedState?: string;
+    evaluatedState: SpaceCharEvaluatedState,
     spaceIndex: number;
 }
 
@@ -14,7 +15,7 @@ const Space = ({
     charFromState = '',
     onChangeHandler = (e)=>{console.log(e.currentTarget.value)},
     fillState = 'empty',
-    evaluatedState = 'unevaluated',
+    evaluatedState,
     spaceIndex,
 }: ISpaceProps ) => {
     
@@ -27,7 +28,7 @@ const Space = ({
 
     return (
         <input 
-            className="blurdle-space"
+            className={`blurdle-space evaluated-state_${evaluatedState}`}
             type="text" 
             maxLength={1} 
             onChange={onChange} 

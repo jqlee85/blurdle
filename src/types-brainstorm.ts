@@ -18,9 +18,26 @@ export interface Game {
     validChars: ValidChars;
     gameSolution: GameSolution;
   }
-  
+
+// Possible statuses for the game
+export enum GAME_STATUS {
+    UNINITIALIZED = 'UNINITIALIZED',
+    IN_PROGRESS = 'IN_PROGRESS',
+    WON = 'WON',
+    LOST = 'LOST',
+    EXPIRED = 'EXPIRED',
+}
+
+// Possible statuses for the game
+export type GameStatus = 
+    | GAME_STATUS.UNINITIALIZED
+    | GAME_STATUS.IN_PROGRESS
+    | GAME_STATUS.WON
+    | GAME_STATUS.LOST
+    | GAME_STATUS.EXPIRED;
+
   export interface GameState {
-    gameStatus: "uninitialized" | "won" | "lost" | "expired";
+    GameStatus: GameStatus;
     currRow: number; // Necessary, or should this be derived from rowsState?
     rowsState: [RowState];
     revealedInfo: RevealedInfo;
@@ -32,7 +49,7 @@ export interface Game {
   
   export interface CharInfo {
     char: Char;
-    bestInfo: CharEvaluatedState;
+    bestInfo: KeyboardCharEvaluatedState;
   }
   
   export interface ValidChars {
@@ -65,13 +82,45 @@ export interface Game {
   export interface SpaceState {
     spaceIndex: number;
     spaceChar?: string;
-    spaceStatus: "empty" | "guess" | "evaluated";
-    charEvaluatedState: CharEvaluatedState;
+    spaceStatus: SpaceStatus;
+    charEvaluatedState: SpaceCharEvaluatedState;
   }
-  
-  export type CharEvaluatedState =
-    | "unevaluated"
-    | "correct"
-    | "incorrect"
-    | "wrong_spot_in_stock"
-    | "wrong_spot_out_of_stock";
+
+
+
+// Space fill status
+export enum SPACE_STATUS {
+    EMPTY = 'EMPTY',
+    GUESS = 'GUESS',
+    EVALUATED = 'EVALUATED'
+}
+
+export type SpaceStatus = 
+  | SPACE_STATUS.EMPTY
+  | SPACE_STATUS.GUESS
+  | SPACE_STATUS.EVALUATED;
+
+// Evaluated space states enum
+export enum CHAR_EVALUATED_STATE {
+    UNEVALUATED ='UNEVALUATED',
+    CORRECT =  "CORRECT",
+    INCORRECT = "INCORRECT",
+    WRONG_SPOT_IN_STOCK = "WRONG_SPOT_IN_STOCK",
+    WRONG_SPOT_OUT_OF_STOCK = "WRONG_SPOT_OUT_OF_STOCK"
+}  
+
+// Evaluated states for spaces
+export type SpaceCharEvaluatedState =
+    | CHAR_EVALUATED_STATE.UNEVALUATED
+    | CHAR_EVALUATED_STATE.CORRECT
+    | CHAR_EVALUATED_STATE.INCORRECT
+    | CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK
+    | CHAR_EVALUATED_STATE.WRONG_SPOT_OUT_OF_STOCK;
+
+// Evaluated states for keyboard characters
+export type KeyboardCharEvaluatedState =
+    | CHAR_EVALUATED_STATE.UNEVALUATED
+    | CHAR_EVALUATED_STATE.CORRECT
+    | CHAR_EVALUATED_STATE.INCORRECT
+    | CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK;
+

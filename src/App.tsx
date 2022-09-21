@@ -1,11 +1,11 @@
-import './App.css';
+import './App.scss';
 import GameContainer from './components/GameContainer';
 import LettersContainer from './components/LettersContainer';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="header">
         <h1>Blurdle</h1>
       </header>
 
@@ -13,9 +13,8 @@ function App() {
         <GameContainer/>
       </main>
 
-      <aside id="blurdle-keyboard">
-        <LettersContainer/>
-      </aside>
+      
+      <LettersContainer/>
     </div>
   );
 }
