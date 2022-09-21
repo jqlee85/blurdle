@@ -1,4 +1,6 @@
 import './App.css';
+import GameContainer from './components/GameContainer';
+import LettersContainer from './components/LettersContainer';
 
 function App() {
   return (
@@ -7,9 +9,13 @@ function App() {
         <h1>Blurdle</h1>
       </header>
 
-      <main>
-        <p>Game code here.</p>
+      <main id="blurdle-game">
+        <GameContainer/>
       </main>
+
+      <aside id="blurdle-keyboard">
+        <LettersContainer/>
+      </aside>
     </div>
   );
 }

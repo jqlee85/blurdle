@@ -1,0 +1,10 @@
+.blurdle-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 6px;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
