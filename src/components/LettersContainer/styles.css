@@ -1,0 +1,24 @@
+#blurdle-keyboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.blurdle-keyboard-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.blurdle-letter button {
+    all: unset;
+    background: none;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    margin: 2px;
+    padding: 5px;
+    cursor: pointer;
+}
