@@ -5,9 +5,6 @@ import { GameState, IGameAction } from '../../types';
 const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
     console.log(action.type, {draft,action});
     switch (action.type) {
-        case 'INITIALIZE': {
-            break;
-        }
         case 'UPDATE_SPACE': {
             const currentRow = draft.rowsState[draft.currRow];
             
@@ -52,6 +49,20 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
             const currentRow = draft.rowsState[draft.currRow];
 
             console.log('SUBMITTING', currentRow.guess)
+
+            // Evaluate guess here
+
+            // Update row with evaluated states
+
+            // Update bestInfo and keyboard data with best info available for each char
+
+            // If win, update game state
+
+            // If not win, and last row, update game state as loss
+
+
+            // If not win and not last row, increment current row
+
 
             return {...draft}
         }
