@@ -1,10 +1,16 @@
 import './styles.scss';
 import Space from '../Space';
-import { KeyboardCharEvaluatedState, CHAR_EVALUATED_STATE } from '../../types';
+import { KeyboardCharEvaluatedState, CHAR_EVALUATED_STATE, RowState } from '../../types';
 
 const spaces = [0,0,0,0,0]; // Temp spaces for stylings
 
-export default () => {
+export interface IRowProps {
+    rowState: RowState,
+}
+
+const Row = ({
+    rowState
+}:IRowProps) => {
     return <div className="blurdle-row">
         { spaces.map((space,i)=>{
             let evaluatedState: KeyboardCharEvaluatedState = CHAR_EVALUATED_STATE.UNEVALUATED;
@@ -19,3 +25,5 @@ export default () => {
         })}    
     </div>;
 }
+
+export default Row;

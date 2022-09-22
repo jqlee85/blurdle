@@ -7,10 +7,11 @@ import LettersContainer from '../LettersContainer';
 export default ({}) => {
     
     const gameState = useContext(GameContext);
+    console.log('gameState',gameState)
     
     return (
         <div className="blurdle-game-container">
-            <BoardContainer gameState={gameState}/>
+            <BoardContainer/>
             <LettersContainer gameState={gameState}/>
         </div>);
 }

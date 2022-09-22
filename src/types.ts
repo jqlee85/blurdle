@@ -58,6 +58,7 @@ export type GameStatus =
     currRow: number; // Necessary, or should this be derived from rowsState?
     rowsState: RowState[];
     revealedInfo: RevealedInfo;
+    gameSolution: GameSolution;
   }
   
   export interface RevealedInfo {
@@ -74,9 +75,8 @@ export type GameStatus =
   }
   
   export interface GameSolution {
-    solutionChars: Char[];
-    numChars: number;
-    charSet: Charset;
+    solution: string;
+    wordLength: number;
   }
   
   export interface Charset {
