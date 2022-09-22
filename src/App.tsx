@@ -4,6 +4,7 @@ import GameContextProvider from './context/GameContext';
 import GameContainer from './components/GameContainer';
 import {getGameData} from './utils/game-data';
 import {IGameDataResponse, GameData} from './types';
+import {getCurrentDate, getDateParam, isValidDateFormat} from './utils/date-utils';
 
 function App() {
   
@@ -11,7 +12,13 @@ function App() {
 
   // On mount, fetch the data for the game
   useEffect(()=>{
-    setGameDataResponse(getGameData());
+    const dateFromParam = getDateParam();
+    const date = (dateFromParam && isValidDateFormat(dateFromParam))
+      ? dateFromParam
+      : getCurrentDate();
+
+    console.log('date',date)
+    setGameDataResponse(getGameData(date));
   },[]);
 
   const gameData = ( gameDataResponse && gameDataResponse.data?.gameData ) 

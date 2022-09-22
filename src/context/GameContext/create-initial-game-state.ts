@@ -37,7 +37,7 @@ const createRowsState = (gameData:GameData, numRows:number = NUM_GUESSES):RowSta
     const rows = [];
     for (let i = 0; i < NUM_GUESSES;i++){
         rows.push({
-            rowIndex: 0,
+            rowIndex: i,
             rowStatus: ROW_STATUS.UNINITIALIZED,
             currentSpaceIndex: 0,
             guess: '',
@@ -51,7 +51,7 @@ const createSpacesState = (gameData:GameData, numRows:number = NUM_GUESSES):Spac
     const spaces = [];
     for (let i = 0; i < gameData.wordLength;i++){
         spaces.push({
-            spaceIndex: 0,
+            spaceIndex: i,
             spaceChar: '',
             spaceStatus: SPACE_STATUS.EMPTY,
             charEvaluatedState: CHAR_EVALUATED_STATE.UNEVALUATED,

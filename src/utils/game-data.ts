@@ -21,6 +21,38 @@ const gamesData:GamesDataType = {
         wordLength: 5,
         solution: 'LEAST',
     },
+    ['2022_09_25']: {
+        wordLength: 5,
+        solution: 'GREAT'
+    },
+    ['2022_09_26']: {
+        wordLength: 5,
+        solution: 'ALGAE'
+    },
+    ['2022_09_27']: {
+        wordLength: 5,
+        solution: 'SCOOT',
+    },
+    ['2022_09_28']: {
+        wordLength: 5,
+        solution: 'ROAST',
+    },
+    ['2022_09_29']: {
+        wordLength: 5,
+        solution: 'WAGON'
+    },
+    ['2022_09_30']: {
+        wordLength: 5,
+        solution: 'KOOKY'
+    },
+    ['2022_10_01']: {
+        wordLength: 5,
+        solution: 'IONIC',
+    },
+    ['2022_10_02']: {
+        wordLength: 5,
+        solution: 'BRAKE',
+    },
 };
 
 // Gets the initial game data to populate the board
@@ -40,7 +72,7 @@ export const getGameData = (date:string = '2022_09_21'): IGameDataResponse => {
     return {
         type: 'SUCCESS',
         data: {
-            gameData,
+            gameData: gameData ? gameData : { wordLength: 5, solution:'SHELL' },
         }
     }
 }

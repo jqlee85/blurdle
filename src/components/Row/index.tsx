@@ -13,7 +13,10 @@ const Row = ({
     rowState,
     onRowSubmitHandler,
 }:IRowProps) => {
-    return <div className="blurdle-row">
+    return <div 
+        className="blurdle-row"
+        onClick={()=>{onRowSubmitHandler(rowState.rowIndex, 'HEARD')}}
+    >
         { spaces.map((space,i)=>{
             let evaluatedState: KeyboardCharEvaluatedState = CHAR_EVALUATED_STATE.UNEVALUATED;
             if (i===1) {evaluatedState = CHAR_EVALUATED_STATE.CORRECT}
