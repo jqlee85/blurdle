@@ -20,7 +20,6 @@ const Row = ({
     
     return <div 
         className={`blurdle-row 'blurdle-row_${isActiveRow ? 'ACTIVE' : 'INACTIVE'}`}
-        onClick={()=>{onRowSubmitHandler(rowState.rowIndex, rowState.guess)}}
     >
         { spacesStates.map((spaceState,i)=>{
             let evaluatedState: KeyboardCharEvaluatedState = CHAR_EVALUATED_STATE.UNEVALUATED;
@@ -29,9 +28,9 @@ const Row = ({
             if (i===3) {evaluatedState = CHAR_EVALUATED_STATE.INCORRECT}
             return <Space
                 key={`space-${i}`}
-                spaceIndex={i}
-                evaluatedState={evaluatedState}
+                spaceState={rowState.spacesStates[i]}
                 disabled={!isActiveRow}
+                onChangeHandler={()=>{onRowSubmitHandler(rowState.rowIndex, rowState.guess)}}
             />
         })}    
     </div>;

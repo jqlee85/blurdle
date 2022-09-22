@@ -17,7 +17,7 @@ const Space = ({
     const {spaceChar, charEvaluatedState, spaceIndex} = spaceState;
 
     const onChange = (e:Event) => {
-        console.log(e.currentTarget.value);
+        // console.log(e.currentTarget.value);
         // dispatch({type:'UPDATE_SPACE_CHAR',payload: {char:e.currentTarget.value, rowIndex:rowIndex,spaceIndex:spaceIndex}})
     }
 
@@ -26,7 +26,7 @@ const Space = ({
             className={`blurdle-space evaluated-state_${charEvaluatedState}`}
             type="text" 
             maxLength={1} 
-            onChange={onChange} 
+            onChange={onChangeHandler} 
             placeholder='' 
             value={spaceChar}
             disabled={disabled}

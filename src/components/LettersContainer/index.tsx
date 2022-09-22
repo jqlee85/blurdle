@@ -1,5 +1,6 @@
 import './styles.scss';
-import {useState} from 'react';
+import {useContext} from 'react';
+import {GameContext} from '../../context/GameContext';
 import Letter from '../Letter';
 import { CHAR_EVALUATED_STATE, KeyboardCharEvaluatedState, KeyboardButtonData, KeyboardRow } from '../../types';
 
@@ -13,27 +14,44 @@ const keyboard: KeyboardRow[] = [
 ];
 
 export interface ILettersContainerProps {
-    gameState: any;
+    onRowSubmitHandler: (rowIndex: number, guess: string)=>void;
 }
 
 const LettersContainer = ({
-    gameState
+    onRowSubmitHandler
 }:ILettersContainerProps) => {
     
-    const [value, setValue] = useState('');
+    const {state, dispatch} = useContext(GameContext);
 
     // Handle clicks on letter buttons and update the "form"
     const letterOnClickHandler = (buttonData: KeyboardButtonData) => {
-        console.log('onclick',value)
         if (buttonData.type === 'letter') {
-            setValue(buttonData.value);
             console.log('update space with letter', buttonData.value);
+            dispatch(
+                {
+                    type: "UPDATE_GUESS",
+                    payload: { 
+                        rowIndex: state.currRow,
+                        spaceIndex: state.rowsState[state.currRow].currentSpaceIndex,
+                        char: buttonData.value,
+                    }
+                }
+            )
         }
         if (buttonData.type === 'submit') {
             console.log('submit row')
+            onRowSubmitHandler(state.currRow, state.rowsState[state.currRow].guess);
         }
         if (buttonData.type === 'backspace') {
-            console.log('backspace');
+            dispatch(
+                {
+                    type: "BACKSPACE",
+                    payload: { 
+                        rowIndex: state.currRow,
+                        spaceIndex: state.rowsState[state.currRow].currentSpaceIndex
+                    }
+                }
+            )
         }
     }
 
@@ -42,14 +60,9 @@ const LettersContainer = ({
         console.log('update state',value)
     };
     
-    return (<form 
+    return (<div 
         id="blurdle-keyboard"
-        onSubmit={(event)=>{updateState(value);event.preventDefault()} }
     >
-        <input
-            hidden={true}
-            value={value}
-        />
         {keyboard.map((keyboardRow,j)=>{
             return (<div className="blurdle-keyboard-row">
                 { keyboardRow.map((buttonData,i)=>{
@@ -66,7 +79,7 @@ const LettersContainer = ({
             })}
             </div>);
         })}
-    </form>);
+    </div>);
 }
 
 export default LettersContainer;
