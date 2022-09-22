@@ -28,6 +28,16 @@ const LettersContainer = ({
         if (buttonData.type === 'letter') {
             console.log('update space with letter', buttonData.value);
             dispatch(
+                { 
+                    type: 'UPDATE_SPACE',
+                    payload: {
+                        char: buttonData.value,
+                        rowIndex: state.currRow,
+                        spaceIndex: state.rowsState[state.currRow].currentSpaceIndex
+                    }
+                }
+            );
+            dispatch(
                 {
                     type: "UPDATE_GUESS",
                     payload: { 
@@ -36,11 +46,14 @@ const LettersContainer = ({
                         char: buttonData.value,
                     }
                 }
-            )
+            );
         }
         if (buttonData.type === 'submit') {
             console.log('submit row')
-            onRowSubmitHandler(state.currRow, state.rowsState[state.currRow].guess);
+            // Ensure guess is correct length, if so submit guess for evaluation
+            if (state.rowsState[state.currRow].guess.length === state.gameSolution.wordLength){
+                onRowSubmitHandler(state.currRow, state.rowsState[state.currRow].guess);
+            }
         }
         if (buttonData.type === 'backspace') {
             dispatch(

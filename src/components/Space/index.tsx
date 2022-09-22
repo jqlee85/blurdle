@@ -30,7 +30,7 @@ const Space = ({
             onChange={onChange} 
             placeholder='' 
             value={spaceChar}
-            disabled={disabled}
+            disabled={true}
         />
     )
 }
