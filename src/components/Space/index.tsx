@@ -4,7 +4,7 @@ import './styles.scss';
 
 export interface ISpaceProps {
     spaceState: SpaceState;
-    onChangeHandler: (e:React.FormEvent<HTMLInputElement>) => void;
+    onChangeHandler: (char:string,spaceIndex:number) => void;
     disabled: boolean;
 }
 
@@ -16,9 +16,10 @@ const Space = ({
 
     const {spaceChar, charEvaluatedState, spaceIndex} = spaceState;
 
-    const onChange = (e:Event) => {
+    const onChange = (e:React.FormEvent<HTMLInputElement>) => {
         // console.log(e.currentTarget.value);
         // dispatch({type:'UPDATE_SPACE_CHAR',payload: {char:e.currentTarget.value, rowIndex:rowIndex,spaceIndex:spaceIndex}})
+        onChangeHandler(e.currentTarget.value, spaceIndex);
     }
 
     return (
@@ -26,7 +27,7 @@ const Space = ({
             className={`blurdle-space evaluated-state_${charEvaluatedState}`}
             type="text" 
             maxLength={1} 
-            onChange={onChangeHandler} 
+            onChange={onChange} 
             placeholder='' 
             value={spaceChar}
             disabled={disabled}

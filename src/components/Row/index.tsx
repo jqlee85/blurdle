@@ -18,6 +18,13 @@ const Row = ({
     
     const {spacesStates} = rowState;
     
+    const onSpaceChangeHandler = (char:string,spaceIndex:number) => {
+        //Update guess
+
+        
+        
+    }
+
     return <div 
         className={`blurdle-row 'blurdle-row_${isActiveRow ? 'ACTIVE' : 'INACTIVE'}`}
     >
@@ -30,7 +37,7 @@ const Row = ({
                 key={`space-${i}`}
                 spaceState={rowState.spacesStates[i]}
                 disabled={!isActiveRow}
-                onChangeHandler={()=>{onRowSubmitHandler(rowState.rowIndex, rowState.guess)}}
+                onChangeHandler={onSpaceChangeHandler}
             />
         })}    
     </div>;
