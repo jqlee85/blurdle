@@ -15,7 +15,13 @@ const keyboard: KeyboardRow[] = [
     [{type:'submit', size: 'lg', value:'Enter'},{type:'backspace',  size: 'lg', value:'Delete'}]
 ];
 
-const LettersContainer = () => {
+export interface ILettersContainerProps {
+    gameState: any;
+}
+
+const LettersContainer = ({
+    gameState
+}:ILettersContainerProps) => {
     
     const [value, setValue] = useState('');
 
@@ -39,7 +45,10 @@ const LettersContainer = () => {
         console.log('update state',value)
     };
     
-    return (<form id="blurdle-keyboard" onSubmit={(event)=>{updateState(value);event.preventDefault()} }>
+    return (<form 
+        id="blurdle-keyboard"
+        onSubmit={(event)=>{updateState(value);event.preventDefault()} }
+    >
         <input
             hidden={true}
             value={value}

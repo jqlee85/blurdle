@@ -1,13 +1,16 @@
+import React, {useContext} from 'react';
+import {GameContext} from '../../context/GameContext';
 import './styles.scss';
-import Row from '../Row';
+import BoardContainer from '../BoardContainer';
+import LettersContainer from '../LettersContainer';
 
-const rows = [0,0,0,0,0,0]; // Temp rows for styling
-
-export default () => {
+export default ({}) => {
+    
+    const gameState = useContext(GameContext);
     
     return (
         <div className="blurdle-game-container">
-            {rows.map((rowData,i)=><Row key={`row-${i}`}/>)}
-        </div>
-    );
+            <BoardContainer gameState={gameState}/>
+            <LettersContainer gameState={gameState}/>
+        </div>);
 }

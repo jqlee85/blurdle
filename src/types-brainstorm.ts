@@ -37,14 +37,14 @@ export type GameStatus =
     | GAME_STATUS.EXPIRED;
 
   export interface GameState {
-    GameStatus: GameStatus;
+    gameStatus: GameStatus;
     currRow: number; // Necessary, or should this be derived from rowsState?
-    rowsState: [RowState];
+    rowsState: RowState[];
     revealedInfo: RevealedInfo;
   }
   
   export interface RevealedInfo {
-    charsInfo: [CharInfo];
+    charsInfo: CharInfo[];
   }
   
   export interface CharInfo {
@@ -57,13 +57,13 @@ export type GameStatus =
   }
   
   export interface GameSolution {
-    solutionChars: [Char];
+    solutionChars: Char[];
     numChars: number;
     charSet: Charset;
   }
   
   export interface Charset {
-    chars: [string];
+    chars: string[];
   }
   
   export interface Char {
@@ -76,7 +76,7 @@ export type GameStatus =
     rowStatus: "uninitialized" | "active" | "submitting" | "evaluated";
     currentSpaceIndex: number;
     guess: string;
-    spacesStates: [SpaceState];
+    spacesStates: SpaceState[];
   }
   
   export interface SpaceState {
