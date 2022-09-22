@@ -5,11 +5,9 @@ import Row from '../Row';
 import {RowState} from '../../types';
 
 export interface IBoardContainerProps {
-    onRowSubmitHandler: (rowIndex: number, guess: string)=>void;
 }
 
 export default ({
-    onRowSubmitHandler,
 }:IBoardContainerProps) => {
     
     const {state: {currRow, rowsState, gameSolution: {wordLength}}, dispatch} = useContext(GameContext);
@@ -20,7 +18,6 @@ export default ({
                 return <Row 
                     key={`row-${i}`}
                     rowState={rowState}
-                    onRowSubmitHandler={onRowSubmitHandler}
                     isActiveRow={rowState.rowIndex === currRow}
                 />})}
         </div>

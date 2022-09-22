@@ -9,42 +9,50 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
             break;
         }
         case 'UPDATE_SPACE': {
+            const currentRow = draft.rowsState[draft.currRow];
+            
             // Update space's value with the character
-            const { currentSpaceIndex } = draft.rowsState[draft.currRow];
-            draft.rowsState[draft.currRow].spacesStates[currentSpaceIndex].spaceChar = action.payload.char;
+            const { currentSpaceIndex } = currentRow;
+            currentRow.spacesStates[currentSpaceIndex].spaceChar = action.payload.char;
 
             // Advance to next space if possible
             if (currentSpaceIndex < draft.gameSolution.wordLength - 1){
-                draft.rowsState[draft.currRow].currentSpaceIndex++; 
+                currentRow.currentSpaceIndex++; 
             }
-            break;
-        }
-        case 'UPDATE_GUESS': {
-            // Assemble guess from filled in spaces
-            draft.rowsState[draft.currRow].guess = 'GUESS';
+            
+            // Update Guess
+            currentRow.guess = currentRow.spacesStates.map(spaceState=>spaceState.spaceChar).join('');
+
             break;
         }
         case 'BACKSPACE': {
+            const currentRow = draft.rowsState[draft.currRow];
             const { currentSpaceIndex } = draft.rowsState[draft.currRow];
 
             if (currentSpaceIndex === 0) break; // Early return if no chars (first space is focused)
 
             // If row is not full, delete last filled space and decrement current space index
             if (
-                draft.rowsState[draft.currRow].spacesStates[draft.gameSolution.wordLength-1].spaceChar === ''
+                currentRow.spacesStates[draft.gameSolution.wordLength-1].spaceChar === ''
             ) {
-                const spaceToDelete:number = draft.rowsState[draft.currRow].currentSpaceIndex - 1 ;
-                draft.rowsState[draft.currRow].spacesStates[spaceToDelete].spaceChar = '';
-                draft.rowsState[draft.currRow].currentSpaceIndex--; 
+                const spaceToDelete:number = currentRow.currentSpaceIndex - 1 ;
+                currentRow.spacesStates[spaceToDelete].spaceChar = '';
+                currentRow.currentSpaceIndex--; 
             }
             // Otherwise (if on last space and it's full), delete the current space and leave it focused
             else {
-                draft.rowsState[draft.currRow].spacesStates[draft.rowsState[draft.currRow].currentSpaceIndex].spaceChar = '';
+                currentRow.spacesStates[draft.rowsState[draft.currRow].currentSpaceIndex].spaceChar = '';
             }
 
+            // Update Guess
+            currentRow.guess = currentRow.spacesStates.map(spaceState=>spaceState.spaceChar).join('');
             break;
         }
         case 'SUBMIT_GUESS': {
+            const currentRow = draft.rowsState[draft.currRow];
+
+            console.log('SUBMITTING', currentRow.guess)
+
             return {...draft}
         }
         case 'DISPLAY_VALIDATION_MESSAGE': {

@@ -37,8 +37,8 @@ export default ({}) => {
     
     return (
         <div className="blurdle-game-container">
-            <BoardContainer onRowSubmitHandler={onRowSubmitHandler}/>
-            <LettersContainer onRowSubmitHandler={onRowSubmitHandler}/>
+            <BoardContainer/>
+            <LettersContainer/>
         </div>);
 }
 
