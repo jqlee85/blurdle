@@ -13,7 +13,7 @@ export type GamesDataType = {
 }
 
 export interface GameData {
-    wordSize: number;
+    wordLength: number;
     solution: string;
 }
 
@@ -165,3 +165,4 @@ export interface KeyboardButtonData {
 }
 
 export type KeyboardRow = KeyboardButtonData[];
+;

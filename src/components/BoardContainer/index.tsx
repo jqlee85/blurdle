@@ -2,14 +2,12 @@ import './styles.scss';
 import {useContext} from 'react';
 import {GameContext} from '../../context/GameContext';
 import Row from '../Row';
-import {RowState,GameSolution} from '../../types';
+import {RowState} from '../../types';
 
 export interface IBoardContainerProps {
-    gameSolution: GameSolution;
 }
 
 export default ({
-    gameSolution
 }:IBoardContainerProps) => {
     
     const {state: {rowsState, gameSolution: {wordLength}}, dispatch} = useContext(GameContext);
@@ -47,7 +45,7 @@ export default ({
                 return <Row 
                     key={`row-${i}`}
                     rowState={rowState}
-                    onSubmitHandler={onRowSubmitHandler}
+                    onRowSubmitHandler={onRowSubmitHandler}
                 />})}
         </div>
     );

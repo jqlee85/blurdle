@@ -5,11 +5,13 @@ import { KeyboardCharEvaluatedState, CHAR_EVALUATED_STATE, RowState } from '../.
 const spaces = [0,0,0,0,0]; // Temp spaces for stylings
 
 export interface IRowProps {
-    rowState: RowState,
+    rowState: RowState;
+    onRowSubmitHandler: (rowIndex: number, guess:string) => void;
 }
 
 const Row = ({
-    rowState
+    rowState,
+    onRowSubmitHandler,
 }:IRowProps) => {
     return <div className="blurdle-row">
         { spaces.map((space,i)=>{

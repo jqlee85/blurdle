@@ -26,6 +26,10 @@ const createInitialGameState = (gameData:GameData): GameState=>{
                 bestInfo: CHAR_EVALUATED_STATE.UNEVALUATED ,
             }]
         },
+        gameSolution: {
+            solution: gameData.solution,
+            wordLength: gameData.wordLength,
+        }
       }
 }
 
@@ -45,7 +49,7 @@ const createRowsState = (gameData:GameData, numRows:number = NUM_GUESSES):RowSta
 
 const createSpacesState = (gameData:GameData, numRows:number = NUM_GUESSES):SpaceState[] => {
     const spaces = [];
-    for (let i = 0; i < gameData.wordSize;i++){
+    for (let i = 0; i < gameData.wordLength;i++){
         spaces.push({
             spaceIndex: 0,
             spaceChar: '',

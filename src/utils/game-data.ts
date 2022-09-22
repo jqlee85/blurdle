@@ -6,19 +6,19 @@ import {GamesDataType, IGameDataResponse} from "../types";
 
 const gamesData:GamesDataType = {
     ['2022_09_21']: {
-        wordSize: 5,
+        wordLength: 5,
         solution: 'BREAD'
     },
     ['2022_09_22']: {
-        wordSize: 5,
+        wordLength: 5,
         solution: 'JOUST'
     },
     ['2022_09_23']: {
-        wordSize: 5,
+        wordLength: 5,
         solution: 'HEARD',
     },
     ['2022_09_24']: {
-        wordSize: 5,
+        wordLength: 5,
         solution: 'LEAST',
     },
 };
