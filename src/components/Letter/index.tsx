@@ -1,11 +1,5 @@
 import './styles.scss';
-import {CHAR_EVALUATED_STATE, KeyboardCharEvaluatedState} from '../../types-brainstorm';
-
-export interface KeyboardButtonData {
-    type: 'letter' | 'submit' | 'backspace';
-    size: 'sm' | 'md' | 'lg';
-    value: string;
-}
+import {CHAR_EVALUATED_STATE,KeyboardButtonData, KeyboardCharEvaluatedState} from '../../types';
 
 export interface ILetterProps {
     onClickHandler: (buttonData:KeyboardButtonData) => void;

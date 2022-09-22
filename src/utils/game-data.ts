@@ -1,14 +1,8 @@
 
 
-// Temp object containing game data for different dates
-type GamesDataType = {
-    [key:string]: GameData;
-}
+import {GamesDataType, IGameDataResponse} from "../types";
 
-export interface GameData {
-    wordSize: number;
-    solution: string;
-}
+// Temp object containing game data for different dates
 
 const gamesData:GamesDataType = {
     ['2022_09_21']: {
@@ -28,14 +22,6 @@ const gamesData:GamesDataType = {
         solution: 'LEAST',
     },
 };
-
-export interface IGameDataResponse {
-    type: 'ERROR' | 'SUCCESS',
-    data: {
-        message?: string;
-        gameData?: GameData;
-    }
-}
 
 // Gets the initial game data to populate the board
 export const getGameData = (date:string = '2022_09_21'): IGameDataResponse => {

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { SpaceCharEvaluatedState } from '../../types-brainstorm';
+import { SpaceCharEvaluatedState } from '../../types';
 import './styles.scss';
 
 export interface ISpaceProps {

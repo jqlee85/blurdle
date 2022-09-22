@@ -1,5 +1,22 @@
 // Data Model Brainstorm
 
+export interface IGameDataResponse {
+    type: 'ERROR' | 'SUCCESS',
+    data: {
+        message?: string;
+        gameData?: GameData;
+    }
+}
+
+export type GamesDataType = {
+    [key:string]: GameData;
+}
+
+export interface GameData {
+    wordSize: number;
+    solution: string;
+}
+
 export interface Game {
     id: GameID;
     user: UserID; // TODO user functionality if there's time
@@ -124,3 +141,19 @@ export type KeyboardCharEvaluatedState =
     | CHAR_EVALUATED_STATE.INCORRECT
     | CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK;
 
+export interface IGameAction {
+    type: string;
+    payload: any;
+}
+
+export interface KeyboardButtonData {
+  type: 'letter' | 'submit' | 'backspace';
+  size: 'sm' | 'md' | 'lg';
+  value: string;
+}
+
+export interface ILetterProps {
+  onClickHandler: (buttonData:KeyboardButtonData) => void;
+  evaluatedState?: KeyboardCharEvaluatedState;
+  buttonData: KeyboardButtonData;
+}

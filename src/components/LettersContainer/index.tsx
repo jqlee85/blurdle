@@ -1,8 +1,7 @@
 import './styles.scss';
 import {useState} from 'react';
-import Letter, {KeyboardButtonData} from '../Letter';
-import { CHAR_EVALUATED_STATE, KeyboardCharEvaluatedState } from '../../types-brainstorm';
-import { setConstantValue } from 'typescript';
+import Letter from '../Letter';
+import { CHAR_EVALUATED_STATE, KeyboardCharEvaluatedState, KeyboardButtonData } from '../../types';
 
 export type KeyboardRow = KeyboardButtonData[];
 

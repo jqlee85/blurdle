@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import './App.scss';
 import GameContextProvider from './context/GameContext';
 import GameContainer from './components/GameContainer';
-
-import {getGameData, IGameDataResponse, GameData} from './utils/game-data';
+import {getGameData} from './utils/game-data';
+import {IGameDataResponse, GameData} from './types';
 
 function App() {
   

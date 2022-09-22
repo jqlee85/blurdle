@@ -1,6 +1,6 @@
 import './styles.scss';
 import Space from '../Space';
-import { KeyboardCharEvaluatedState, CHAR_EVALUATED_STATE } from '../../types-brainstorm';
+import { KeyboardCharEvaluatedState, CHAR_EVALUATED_STATE } from '../../types';
 
 const spaces = [0,0,0,0,0]; // Temp spaces for stylings
 
