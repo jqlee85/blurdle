@@ -1,10 +1,7 @@
 import './styles.scss';
 import {useState} from 'react';
-import Letter, {KeyboardButtonData} from '../Letter';
-import { CHAR_EVALUATED_STATE, KeyboardCharEvaluatedState } from '../../types-brainstorm';
-import { setConstantValue } from 'typescript';
-
-export type KeyboardRow = KeyboardButtonData[];
+import Letter from '../Letter';
+import { CHAR_EVALUATED_STATE, KeyboardCharEvaluatedState, KeyboardButtonData, KeyboardRow } from '../../types';
 
 // TODO build this dynamically from the charset associated with the game (to allow for i18n)
 // And serve from server
@@ -15,7 +12,13 @@ const keyboard: KeyboardRow[] = [
     [{type:'submit', size: 'lg', value:'Enter'},{type:'backspace',  size: 'lg', value:'Delete'}]
 ];
 
-const LettersContainer = () => {
+export interface ILettersContainerProps {
+    gameState: any;
+}
+
+const LettersContainer = ({
+    gameState
+}:ILettersContainerProps) => {
     
     const [value, setValue] = useState('');
 
@@ -39,7 +42,10 @@ const LettersContainer = () => {
         console.log('update state',value)
     };
     
-    return (<form id="blurdle-keyboard" onSubmit={(event)=>{updateState(value);event.preventDefault()} }>
+    return (<form 
+        id="blurdle-keyboard"
+        onSubmit={(event)=>{updateState(value);event.preventDefault()} }
+    >
         <input
             hidden={true}
             value={value}

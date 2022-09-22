@@ -1,5 +1,22 @@
 // Data Model Brainstorm
 
+export interface IGameDataResponse {
+    type: 'ERROR' | 'SUCCESS',
+    data: {
+        message?: string;
+        gameData?: GameData;
+    }
+}
+
+export type GamesDataType = {
+    [key:string]: GameData;
+}
+
+export interface GameData {
+    wordLength: number;
+    solution: string;
+}
+
 export interface Game {
     id: GameID;
     user: UserID; // TODO user functionality if there's time
@@ -37,14 +54,15 @@ export type GameStatus =
     | GAME_STATUS.EXPIRED;
 
   export interface GameState {
-    GameStatus: GameStatus;
+    gameStatus: GameStatus;
     currRow: number; // Necessary, or should this be derived from rowsState?
-    rowsState: [RowState];
+    rowsState: RowState[];
     revealedInfo: RevealedInfo;
+    gameSolution: GameSolution;
   }
   
   export interface RevealedInfo {
-    charsInfo: [CharInfo];
+    charsInfo: CharInfo[];
   }
   
   export interface CharInfo {
@@ -57,13 +75,12 @@ export type GameStatus =
   }
   
   export interface GameSolution {
-    solutionChars: [Char];
-    numChars: number;
-    charSet: Charset;
+    solution: string;
+    wordLength: number;
   }
   
   export interface Charset {
-    chars: [string];
+    chars: string[];
   }
   
   export interface Char {
@@ -73,19 +90,31 @@ export type GameStatus =
   
   export interface RowState {
     rowIndex: number;
-    rowStatus: "uninitialized" | "active" | "submitting" | "evaluated";
+    rowStatus: RowStatus;
     currentSpaceIndex: number;
     guess: string;
-    spacesStates: [SpaceState];
+    spacesStates: SpaceState[];
   }
   
   export interface SpaceState {
     spaceIndex: number;
-    spaceChar?: string;
+    spaceChar: string;
     spaceStatus: SpaceStatus;
     charEvaluatedState: SpaceCharEvaluatedState;
   }
 
+export enum ROW_STATUS {
+  UNINITIALIZED,
+  ACTIVE,
+  SUBMITTING,
+  EVALUATED
+}
+
+export type RowStatus =
+  | ROW_STATUS.UNINITIALIZED
+  | ROW_STATUS.ACTIVE
+  | ROW_STATUS.SUBMITTING
+  | ROW_STATUS.EVALUATED
 
 
 // Space fill status
@@ -124,3 +153,16 @@ export type KeyboardCharEvaluatedState =
     | CHAR_EVALUATED_STATE.INCORRECT
     | CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK;
 
+export interface IGameAction {
+    type: string;
+    payload: any;
+}
+
+export interface KeyboardButtonData {
+  type: 'letter' | 'submit' | 'backspace';
+  size: 'sm' | 'md' | 'lg';
+  value: string;
+}
+
+export type KeyboardRow = KeyboardButtonData[];
+;

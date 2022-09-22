@@ -1,39 +1,35 @@
 import React, {useState} from 'react';
-import { SpaceCharEvaluatedState } from '../../types-brainstorm';
+import { SpaceCharEvaluatedState, SpaceState } from '../../types';
 import './styles.scss';
 
 export interface ISpaceProps {
-    charFromState?: string;
-    children?: React.ReactNode;
-    onChangeHandler?: (e:React.FormEvent<HTMLInputElement>) => void;
-    fillState?: string;
-    evaluatedState: SpaceCharEvaluatedState,
-    spaceIndex: number;
+    spaceState: SpaceState;
+    onChangeHandler: (e:React.FormEvent<HTMLInputElement>) => void;
+    disabled: boolean;
 }
 
 const Space = ({
-    charFromState = '',
-    onChangeHandler = (e)=>{console.log(e.currentTarget.value)},
-    fillState = 'empty',
-    evaluatedState,
-    spaceIndex,
+    spaceState, 
+    disabled=true,
+    onChangeHandler,
 }: ISpaceProps ) => {
-    
-    const [char,setChar] = useState(charFromState);
 
-    const onChange = (e:React.FormEvent<HTMLInputElement>) => {
-        console.log(e.currentTarget.value)
-        setChar(e.currentTarget.value)
+    const {spaceChar, charEvaluatedState, spaceIndex} = spaceState;
+
+    const onChange = (e:Event) => {
+        console.log(e.currentTarget.value);
+        // dispatch({type:'UPDATE_SPACE_CHAR',payload: {char:e.currentTarget.value, rowIndex:rowIndex,spaceIndex:spaceIndex}})
     }
 
     return (
         <input 
-            className={`blurdle-space evaluated-state_${evaluatedState}`}
+            className={`blurdle-space evaluated-state_${charEvaluatedState}`}
             type="text" 
             maxLength={1} 
             onChange={onChange} 
             placeholder='' 
-            value={char}
+            value={spaceChar}
+            disabled={disabled}
         />
     )
 }
