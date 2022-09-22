@@ -90,7 +90,7 @@ export type GameStatus =
   
   export interface RowState {
     rowIndex: number;
-    rowStatus: "uninitialized" | "active" | "submitting" | "evaluated";
+    rowStatus: RowStatus;
     currentSpaceIndex: number;
     guess: string;
     spacesStates: SpaceState[];
@@ -98,11 +98,23 @@ export type GameStatus =
   
   export interface SpaceState {
     spaceIndex: number;
-    spaceChar?: string;
+    spaceChar: string;
     spaceStatus: SpaceStatus;
     charEvaluatedState: SpaceCharEvaluatedState;
   }
 
+export enum ROW_STATUS {
+  UNINITIALIZED,
+  ACTIVE,
+  SUBMITTING,
+  EVALUATED
+}
+
+export type RowStatus =
+  | ROW_STATUS.UNINITIALIZED
+  | ROW_STATUS.ACTIVE
+  | ROW_STATUS.SUBMITTING
+  | ROW_STATUS.EVALUATED
 
 
 // Space fill status
@@ -152,8 +164,4 @@ export interface KeyboardButtonData {
   value: string;
 }
 
-export interface ILetterProps {
-  onClickHandler: (buttonData:KeyboardButtonData) => void;
-  evaluatedState?: KeyboardCharEvaluatedState;
-  buttonData: KeyboardButtonData;
-}
+export type KeyboardRow = KeyboardButtonData[];

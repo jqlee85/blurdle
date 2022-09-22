@@ -1,9 +1,7 @@
 import './styles.scss';
 import {useState} from 'react';
 import Letter from '../Letter';
-import { CHAR_EVALUATED_STATE, KeyboardCharEvaluatedState, KeyboardButtonData } from '../../types';
-
-export type KeyboardRow = KeyboardButtonData[];
+import { CHAR_EVALUATED_STATE, KeyboardCharEvaluatedState, KeyboardButtonData, KeyboardRow } from '../../types';
 
 // TODO build this dynamically from the charset associated with the game (to allow for i18n)
 // And serve from server
