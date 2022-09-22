@@ -7,6 +7,21 @@ const gameReducer: Reducer<GameState, IGameAction> = (state, action) => {
         case 'INITIALIZE': {
             return {...state};
         }
+        case 'UPDATE_SPACE': {
+            return {...state};
+        }
+        case 'UPDATE_GUESS': {
+            return {...state};
+        }
+        case 'BACKSPACE': {
+            return {...state};
+        }
+        case 'SUBMIT_GUESS': {
+            return {...state}
+        }
+        case 'DISPLAY_VALIDATION_MESSAGE': {
+            return {...state}
+        }
         default: {
             return {...state};
         }
