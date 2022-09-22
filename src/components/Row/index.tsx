@@ -7,17 +7,22 @@ const spaces = [0,0,0,0,0]; // Temp spaces for stylings
 export interface IRowProps {
     rowState: RowState;
     onRowSubmitHandler: (rowIndex: number, guess:string) => void;
+    isActiveRow: boolean;
 }
 
 const Row = ({
     rowState,
     onRowSubmitHandler,
+    isActiveRow=false,
 }:IRowProps) => {
+    
+    const {spacesStates} = rowState;
+    
     return <div 
-        className="blurdle-row"
-        onClick={()=>{onRowSubmitHandler(rowState.rowIndex, 'HEARD')}}
+        className={`blurdle-row 'blurdle-row_${isActiveRow ? 'ACTIVE' : 'INACTIVE'}`}
+        onClick={()=>{onRowSubmitHandler(rowState.rowIndex, rowState.guess)}}
     >
-        { spaces.map((space,i)=>{
+        { spacesStates.map((spaceState,i)=>{
             let evaluatedState: KeyboardCharEvaluatedState = CHAR_EVALUATED_STATE.UNEVALUATED;
             if (i===1) {evaluatedState = CHAR_EVALUATED_STATE.CORRECT}
             if (i===2) {evaluatedState = CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK}
@@ -26,6 +31,7 @@ const Row = ({
                 key={`space-${i}`}
                 spaceIndex={i}
                 evaluatedState={evaluatedState}
+                disabled={!isActiveRow}
             />
         })}    
     </div>;
