@@ -30,11 +30,24 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`
+# Note about dates
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You can spoof dates by adding a 'date' url param with dates in the YYYY_MM_DD format like this `?date=2022_09_27`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# TODOs
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* Fix evaluation logic for correct leters in wrong spot, when subsequent guess for another instance of that letter is correct
+* Move consts from types file to constants.ts
+* Add larger list of words
+* Add dictionary/validation to make sure guesses are words before submitting
+* Move word retrieving to API call, fetching solutions from server
+* Add keyboard functionality and improve accessibility
+* Move guess evaluation to server (solution only revealed to client-side when game is over)
+* Improve modal (allow closing)
+* Improve styling
+* Add tests for components
+* Add hard mode
+* Add toggle for light/dark modes
+* Add localStorage persistence
+* Add user functionality
+* Add history/stats
