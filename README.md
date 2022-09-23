@@ -1,12 +1,14 @@
 # Blurdle
 
-A clone of wordle using React and Typescript.
+A clone of Wordle using React and Typescript. State management is done using React's context and reducer (using immer to simplify reducer logic). Styling is done via SCSS.
 
-## Note about dates
+Word solutions list sourced from the public "Wordle" words list (should provide words into 2027), and the word list used for validating if words are valid English words was sourced from the Stanford GraphBase word list.
+
+### Note about dates
 
 You can spoof dates by adding a 'date' url param with dates in the YYYY_MM_DD format like this `?date=2022_09_27`
 
-## Hosted live on Netlify
+### Hosted live on Netlify
 
 [https://jesselee-blurdle.netlify.app/](https://jesselee-blurdle.netlify.app/)
 
