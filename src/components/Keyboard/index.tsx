@@ -1,8 +1,6 @@
 import './styles.scss';
-import {useContext} from 'react';
-import {GameContext} from '../../context/GameContext';
-import Letter from '../Letter';
-import { CHAR_EVALUATED_STATE, KeyboardCharEvaluatedState, KeyboardButtonData, KeyboardRow } from '../../types';
+import Letter from '../Key';
+import { KeyboardRow } from '../../types';
 
 // TODO build this dynamically from the charset associated with the game (to allow for i18n)
 // And serve from server
@@ -13,16 +11,16 @@ const keyboard: KeyboardRow[] = [
     [{type:'submit', size: 'lg', value:'Enter'},{type:'backspace',  size: 'lg', value:'Delete'}]
 ];
 
-export interface ILettersContainerProps {
+export interface IKeyboardProps {
 }
 
-const LettersContainer = ({
-}:ILettersContainerProps) => {
+const Keyboard = ({
+}:IKeyboardProps) => {
     return (<div 
         id="blurdle-keyboard"
     >
         {keyboard.map((keyboardRow,j)=>{
-            return (<div className="blurdle-keyboard-row">
+            return (<div className="blurdle-keyboard-row" key={`keyboard-row_${j}`}>
                 { keyboardRow.map((buttonData,i)=>{
                     return <Letter
                         buttonData={buttonData}
@@ -34,4 +32,4 @@ const LettersContainer = ({
     </div>);
 }
 
-export default LettersContainer;
+export default Keyboard;

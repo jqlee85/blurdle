@@ -7,7 +7,7 @@ import {RowState} from '../../types';
 export interface IBoardContainerProps {
 }
 
-export default ({
+const BoardContainer = ({
 }:IBoardContainerProps) => {
     
     const {state: {currRow, rowsState}} = useContext(GameContext);
@@ -23,3 +23,5 @@ export default ({
         </div>
     );
 }
+
+export default BoardContainer;

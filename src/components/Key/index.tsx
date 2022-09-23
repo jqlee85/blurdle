@@ -7,7 +7,7 @@ export interface ILetterProps {
     buttonData: KeyboardButtonData;
 }
 
-export default ({
+const Key = ({
     buttonData,
 }:ILetterProps) => {
     
@@ -59,3 +59,5 @@ export default ({
         <button onClick={()=>{letterOnClickHandler(buttonData)}}>{value}</button>
     </div>;
 }
+
+export default Key;

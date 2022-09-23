@@ -1,20 +1,19 @@
 import './styles.scss';
 import BoardContainer from '../BoardContainer';
-import LettersContainer from '../LettersContainer';
+import Keyboard from '../Keyboard';
 import {useContext} from 'react';
 import {GameContext} from '../../context/GameContext';
 import { GAME_STATUS } from '../../types';
 import GameOverModal from '../GameOverModal';
-import { stat } from 'fs';
 
-export default ({}) => {
+const GameContainer = ({}) => {
     
     const {state: {currRow, gameStatus, gameSolution}} = useContext(GameContext);
 
     return (
         <div className="blurdle-game-container">
             <BoardContainer/>
-            <LettersContainer/>
+            <Keyboard/>
             {(gameStatus === GAME_STATUS.WON || gameStatus === GAME_STATUS.LOST) &&
                 <GameOverModal
                     gameStatus={gameStatus}
@@ -25,3 +24,5 @@ export default ({}) => {
         </div>
     );
 }
+
+export default GameContainer;

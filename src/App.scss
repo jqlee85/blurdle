@@ -1,5 +1,9 @@
 @import "styles/variables";
 
+html {
+  background-color: $background-dark;
+}
+
 .App {
   text-align: center;
   min-height: 100vh;
