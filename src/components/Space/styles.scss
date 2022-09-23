@@ -24,7 +24,7 @@
         border-color: $evaluated-wrong-spot;
     }
 
-    &.evaluated-state_INCORRECT {
+    &.evaluated-state_INCORRECT, &.evaluated-state_WRONG_SPOT_OUT_OF_STOCK {
         background-color: $evaluated-incorrect;
         border-color: $evaluated-incorrect;
     }

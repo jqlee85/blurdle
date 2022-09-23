@@ -37,7 +37,7 @@ function App() {
           </main>
         </GameContextProvider> 
       )}
-        
+      <footer></footer>
     </div>
   );
 }

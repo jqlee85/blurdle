@@ -1,5 +1,6 @@
 import {Reducer} from 'react';
-import { GameState, IGameAction } from '../../types';
+import { GameState, IGameAction, ROW_STATUS, GAME_STATUS } from '../../types';
+import evaluateGuess from '../../utils/evaluate-guess';
 
 //@ts-ignore (temporarily ignore next line)
 const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
@@ -50,24 +51,48 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
 
             console.log('SUBMITTING', currentRow.guess)
 
-            // Evaluate guess here
+            // Evaluate guess
+            const evaluatedGuess = evaluateGuess(currentRow.guess, draft.gameSolution.solution);
 
             // Update row with evaluated states
+            currentRow.rowStatus = ROW_STATUS.EVALUATED;
+
+            // Update spaces in current row
+            currentRow.spacesStates.forEach((spaceState,i)=>{
+                spaceState.charEvaluatedState = evaluatedGuess.evaluatedChars[i].evaluation;
+            });            
 
             // Update bestInfo and keyboard data with best info available for each char
 
             // If win, update game state
+            if (evaluatedGuess.isCorrect) {
+                console.log('WON GAME!')
+
+                draft.gameStatus = GAME_STATUS.WON
+            }
+
 
             // If not win, and last row, update game state as loss
+            if (!evaluatedGuess.isCorrect && draft.currRow === draft.rowsState.length - 1) {
+                console.log('WRONG GUESS, LOST');
 
+
+                draft.gameStatus = GAME_STATUS.LOST
+            }
 
             // If not win and not last row, increment current row
+            if (!evaluatedGuess.isCorrect && draft.currRow < draft.rowsState.length - 1) {
+                console.log('WRONG GUESS, NEXT ROW');
+                draft.currRow++;
+            }
+
+            
 
 
-            return {...draft}
+            break;
         }
         case 'DISPLAY_VALIDATION_MESSAGE': {
-            return {...draft}
+            break;
         }
         default: {
             break;

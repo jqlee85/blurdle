@@ -1,4 +1,6 @@
-// Data Model Brainstorm
+// Types
+
+// TODO move consants into constants.ts file
 
 export interface IGameDataResponse {
     type: 'ERROR' | 'SUCCESS',
@@ -152,6 +154,17 @@ export type KeyboardCharEvaluatedState =
     | CHAR_EVALUATED_STATE.CORRECT
     | CHAR_EVALUATED_STATE.INCORRECT
     | CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK;
+
+export interface EvaluatedChar {
+    char: string;
+    charIndex: number;
+    evaluation: SpaceCharEvaluatedState;
+}
+
+export interface IEvaluatedGuess {
+    isCorrect: boolean;
+    evaluatedChars: EvaluatedChar[];
+}
 
 export interface IGameAction {
     type: string;
