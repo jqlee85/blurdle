@@ -3,6 +3,7 @@
 import {GamesDataType, IGameDataResponse} from "../types";
 import {getFormattedDate} from './date-utils';
 import answers from '../data/answers';
+import allWords from '../data/all-five-letter-words';
 
 // Generated a list of answers corresponding to date strings
 export const generateGameData = (answers:string[],startDateString:string = '2022_09_21'):GamesDataType => {

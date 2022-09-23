@@ -3,6 +3,7 @@ import { KeyboardButtonData } from '../../types';
 import { CHAR_EVALUATED_STATE } from '../../constants';
 import { useContext } from 'react';
 import { GameContext } from '../../context/GameContext';
+import { isValidWord } from '../../data/all-five-letter-words';
 
 export interface ILetterProps {
     buttonData: KeyboardButtonData;
@@ -37,8 +38,26 @@ const Key = ({
             );
         }
         if (buttonData.type === 'submit') {
-            // Ensure guess is correct length, if so submit guess for evaluation
-            if (state.rowsState[state.currRow].guess.length === state.gameSolution.wordLength){
+            // Ensure guess is correct length, if so submit guess for evaluation 
+            const currentGuess = state.rowsState[state.currRow].guess;
+
+            if (currentGuess.length !== state.gameSolution.wordLength){
+                dispatch({
+                    type:'WORD_VALIDATION_ERROR',
+                    payload: {
+                        message: 'Not enough letters',
+                    }
+                });
+            } else if (!isValidWord(currentGuess)) {
+                console.log('Not in word list');
+                dispatch({
+                    type:'WORD_VALIDATION_ERROR',
+                    payload: {
+                        message: 'Not in word list',
+                    }
+                });
+            }
+            else {
                 dispatch({type:'SUBMIT_GUESS',payload:{}})
             }
         }

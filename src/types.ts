@@ -40,6 +40,7 @@ export interface GameState {
   rowsState: RowState[];
   revealedCharsInfo: RevealedCharsInfo;
   gameSolution: GameSolution;
+  validationErrorMessage: string;
 }
 
 export type RevealedCharsInfo = {

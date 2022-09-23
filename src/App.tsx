@@ -17,7 +17,6 @@ function App() {
       ? dateFromParam
       : getFormattedDate();
 
-    console.log('date',date)
     setGameDataResponse(getGameData(date));
   },[]);
 

@@ -9,6 +9,7 @@ import {
     CHAR_EVALUATED_STATE
 } from '../../constants';
 import evaluateGuess from '../../utils/evaluate-guess';
+import { WatchDirectoryFlags } from 'typescript';
 
 //@ts-ignore (temporarily ignore next line)
 const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
@@ -107,7 +108,9 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
             }
             break;
         }
-        case 'DISPLAY_VALIDATION_MESSAGE': {
+        case 'WORD_VALIDATION_ERROR': {
+            draft.validationErrorMessage = action.payload.message;
+            
             break;
         }
         default: {

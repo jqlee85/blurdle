@@ -23,7 +23,8 @@ const createInitialGameState = (gameData:GameData): GameState=>{
         gameSolution: {
             solution: gameData.solution,
             wordLength: gameData.wordLength,
-        }
+        },
+        validationErrorMessage: '',
       }
 }
 

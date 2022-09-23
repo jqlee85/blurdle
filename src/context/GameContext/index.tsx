@@ -22,7 +22,6 @@ const GameContextProvider = ({
 
     // Overall game state
     const [state, dispatch] = useImmerReducer(gameReducer, createInitialGameState(gameData));
-    console.log({state})
 
     return <GameContext.Provider
         value={{state, dispatch}}
