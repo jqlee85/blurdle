@@ -9,11 +9,10 @@ import {
     CHAR_EVALUATED_STATE
 } from '../../constants';
 import evaluateGuess from '../../utils/evaluate-guess';
-import { WatchDirectoryFlags } from 'typescript';
 
 //@ts-ignore (temporarily ignore next line)
 const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
-    console.log(action.type, {draft,action});
+    console.debug(action.type, {draft,action});
     switch (action.type) {
         case 'UPDATE_SPACE': {
             const currentRow = draft.rowsState[draft.currRow];
@@ -58,8 +57,6 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
         case 'SUBMIT_GUESS': {
             const currentRow = draft.rowsState[draft.currRow];
 
-            console.log('SUBMITTING', currentRow.guess)
-
             // Evaluate guess
             const evaluatedGuess = evaluateGuess(currentRow.guess, draft.gameSolution.solution);
 
@@ -90,20 +87,17 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
 
             // If win, update game state
             if (evaluatedGuess.isCorrect) {
-                console.log('WON GAME!')
                 draft.gameStatus = GAME_STATUS.WON
             }
 
 
             // If not win, and last row, update game state as loss
             if (!evaluatedGuess.isCorrect && draft.currRow === draft.rowsState.length - 1) {
-                console.log('WRONG GUESS, LOST');
                 draft.gameStatus = GAME_STATUS.LOST
             }
 
             // If not win and not last row, increment current row
             if (!evaluatedGuess.isCorrect && draft.currRow < draft.rowsState.length - 1) {
-                console.log('WRONG GUESS, NEXT ROW');
                 draft.currRow++;
             }
             break;

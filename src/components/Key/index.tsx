@@ -16,8 +16,6 @@ const Key = ({
     const {state, dispatch} = useContext(GameContext);
     const {revealedCharsInfo} = state;
     const {value, type} = buttonData;
-
-
     const evaluatedState = (type ==='letter')
         ? revealedCharsInfo[value].bestInfo
         : CHAR_EVALUATED_STATE.UNEVALUATED;
@@ -25,7 +23,6 @@ const Key = ({
     // Handle clicks on letter buttons and update the "form"
     const letterOnClickHandler = (buttonData: KeyboardButtonData) => {
         if (buttonData.type === 'letter') {
-            console.log('update space with letter', buttonData.value);
             dispatch(
                 { 
                     type: 'UPDATE_SPACE',
@@ -49,7 +46,6 @@ const Key = ({
                     }
                 });
             } else if (!isValidWord(currentGuess)) {
-                console.log('Not in word list');
                 dispatch({
                     type:'WORD_VALIDATION_ERROR',
                     payload: {

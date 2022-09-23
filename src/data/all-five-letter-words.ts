@@ -5791,6 +5791,7 @@ const allWords: string[] = [
     "FICUS",
     "SCREE",
     "WILLY",
+    "SALET",
 ];
 export default allWords;
 

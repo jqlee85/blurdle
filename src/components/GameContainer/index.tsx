@@ -16,7 +16,6 @@ const GameContainer = () => {
         let timer: ReturnType<typeof setTimeout>;
 
         if (validationErrorMessage !== ''){
-            console.log('hey')
             setDisplayedValidationErrorMessage(validationErrorMessage);
             timer = setTimeout(()=>{
                 dispatch({
