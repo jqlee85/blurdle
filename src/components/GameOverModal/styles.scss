@@ -17,7 +17,7 @@
         border-radius: 10px;
         box-shadow: 10px 10px 20px rgba(0,0,0,0.8);
         border: 2px solid $dark-border;
-        padding: 1em;
+        padding: 2.5em 1em 3em;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -26,8 +26,17 @@
         width: 80%;
         max-width: 360px;
 
+        &.won {
+            .solution{ color: $evaluated-correct; }
+        }
+
+        &.lost {
+            .solution{ color: $wrong-red; }
+        }
+
         .solution {
             font-weight: 800;
+            font-size:1.2em;
         } 
     }
 }
