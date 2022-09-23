@@ -11,6 +11,11 @@
     background-color: $evaluated-unevaluated;
     border-color: $evaluated-unevaluated;
 
+    &:hover {
+        background-color: $evaluated-unevaluated-dark;
+        border-color: $evaluated-unevaluated-dark;
+    }
+
     &.letter-size_lg {
         aspect-ratio: 5/1;
         width: 50%;
@@ -24,6 +29,10 @@
     &.evaluated-state_CORRECT {
         background-color: $evaluated-correct;
         border-color: $evaluated-correct;
+        &:hover {
+            background-color: $evaluated-correct-dark;
+            border-color: $evaluated-correct-dark;
+        }
     }
 
     &.evaluated-state_INCORRECT {
@@ -34,6 +43,10 @@
     &.evaluated-state_WRONG_SPOT_IN_STOCK {
         background-color: $evaluated-wrong-spot;
         border-color: $evaluated-wrong-spot;
+        &:hover {
+            background-color: $evaluated-wrong-spot-dark;
+            border-color: $evaluated-wrong-spot-dark;
+        }
     }
 
     button {
