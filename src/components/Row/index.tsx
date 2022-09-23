@@ -15,7 +15,7 @@ const Row = ({
     const {spacesStates} = rowState;
 
     return <div 
-        className={`blurdle-row 'blurdle-row_${isActiveRow ? 'ACTIVE' : 'INACTIVE'}`}
+        className={`blurdle-row blurdle-row_${isActiveRow ? 'ACTIVE' : 'INACTIVE'}`}
     >
         { spacesStates.map((_spaceState,i)=>{
             return <Space
