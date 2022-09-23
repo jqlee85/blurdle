@@ -1,5 +1,6 @@
 import './styles.scss';
-import { GameStatus, GAME_STATUS, GameSolution } from '../../types';
+import { GameStatus, GameSolution } from '../../types';
+import { GAME_STATUS } from '../../constants';
 
 export interface IGameOverModalProps {
     gameStatus: GameStatus;
@@ -7,7 +8,7 @@ export interface IGameOverModalProps {
     numGuesses: number;
 }
 
-export default ({
+const GameOverModal = ({
     gameStatus,
     gameSolution,
     numGuesses,
@@ -34,3 +35,5 @@ export default ({
         </div>
     );
 }
+
+export default GameOverModal;

@@ -1,5 +1,5 @@
-import { ifError } from 'assert';
-import { IEvaluatedGuess, CHAR_EVALUATED_STATE } from '../types';
+import { IEvaluatedGuess } from '../types';
+import {CHAR_EVALUATED_STATE} from '../constants';
 
 const evaluateGuess = (guess:string, solution:string):IEvaluatedGuess => {
 

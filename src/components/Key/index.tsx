@@ -1,5 +1,6 @@
 import './styles.scss';
-import {CHAR_EVALUATED_STATE,KeyboardButtonData, KeyboardCharEvaluatedState} from '../../types';
+import { KeyboardButtonData } from '../../types';
+import { CHAR_EVALUATED_STATE } from '../../constants';
 import { useContext } from 'react';
 import { GameContext } from '../../context/GameContext';
 
@@ -36,7 +37,6 @@ const Key = ({
             );
         }
         if (buttonData.type === 'submit') {
-            console.log('submit row')
             // Ensure guess is correct length, if so submit guess for evaluation
             if (state.rowsState[state.currRow].guess.length === state.gameSolution.wordLength){
                 dispatch({type:'SUBMIT_GUESS',payload:{}})

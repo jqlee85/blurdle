@@ -1,5 +1,13 @@
 import {Reducer} from 'react';
-import { GameState, IGameAction, ROW_STATUS, GAME_STATUS, CHAR_EVALUATED_STATE } from '../../types';
+import {
+    GameState,
+    IGameAction
+} from '../../types';
+import {
+    ROW_STATUS,
+    GAME_STATUS,
+    CHAR_EVALUATED_STATE
+} from '../../constants';
 import evaluateGuess from '../../utils/evaluate-guess';
 
 //@ts-ignore (temporarily ignore next line)

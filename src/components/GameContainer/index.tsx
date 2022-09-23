@@ -3,10 +3,10 @@ import BoardContainer from '../BoardContainer';
 import Keyboard from '../Keyboard';
 import {useContext} from 'react';
 import {GameContext} from '../../context/GameContext';
-import { GAME_STATUS } from '../../types';
+import { GAME_STATUS } from '../../constants';
 import GameOverModal from '../GameOverModal';
 
-const GameContainer = ({}) => {
+const GameContainer = () => {
     
     const {state: {currRow, gameStatus, gameSolution}} = useContext(GameContext);
 

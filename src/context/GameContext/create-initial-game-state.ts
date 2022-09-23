@@ -1,14 +1,17 @@
-import {GAME_STATUS,
-    SPACE_STATUS,
-    CHAR_EVALUATED_STATE,
+import {
     GameState,
     GameData,
     RowState,
     SpaceState,
-    ROW_STATUS,
     RevealedCharsInfo,
 } from '../../types';
-import {NUM_GUESSES, VALID_CHARS} from '../../constants';
+import {
+    GAME_STATUS,
+    CHAR_EVALUATED_STATE,
+    NUM_GUESSES,
+    VALID_CHARS,
+    ROW_STATUS,
+} from '../../constants';
 
 // TODO create initial state properly
 const createInitialGameState = (gameData:GameData): GameState=>{
@@ -44,7 +47,6 @@ const createSpacesState = (gameData:GameData, numRows:number = NUM_GUESSES):Spac
         spaces.push({
             spaceIndex: i,
             spaceChar: '',
-            spaceStatus: SPACE_STATUS.EMPTY,
             charEvaluatedState: CHAR_EVALUATED_STATE.UNEVALUATED,
         });
     }
