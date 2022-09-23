@@ -6,10 +6,9 @@ import {GAME_STATUS,
     RowState,
     SpaceState,
     ROW_STATUS,
-    RowStatus
+    RevealedCharsInfo,
 } from '../../types';
-
-import {NUM_GUESSES} from '../../constants';
+import {NUM_GUESSES, VALID_CHARS} from '../../constants';
 
 // TODO create initial state properly
 const createInitialGameState = (gameData:GameData): GameState=>{
@@ -17,15 +16,7 @@ const createInitialGameState = (gameData:GameData): GameState=>{
         gameStatus: GAME_STATUS.UNINITIALIZED,
         currRow: 0,
         rowsState: createRowsState(gameData),
-        revealedInfo: {
-            charsInfo: [{
-                char: {
-                    index:0,
-                    char:'',
-                },
-                bestInfo: CHAR_EVALUATED_STATE.UNEVALUATED ,
-            }]
-        },
+        revealedCharsInfo: createInitialRevealedCharsInfo(gameData),
         gameSolution: {
             solution: gameData.solution,
             wordLength: gameData.wordLength,
@@ -60,6 +51,16 @@ const createSpacesState = (gameData:GameData, numRows:number = NUM_GUESSES):Spac
     return spaces;
 }
 
+const createInitialRevealedCharsInfo = (gameData:GameData):RevealedCharsInfo => {
+    const charSet = VALID_CHARS[gameData.charSet];
+
+    const revealedCharsInfo: RevealedCharsInfo = {};
+    charSet.forEach(
+        char => {revealedCharsInfo[char] = { bestInfo: CHAR_EVALUATED_STATE.UNEVALUATED }}
+    );
+    return revealedCharsInfo;
+
+}
 
 
 export default createInitialGameState

@@ -36,7 +36,6 @@ You can spoof dates by adding a 'date' url param with dates in the YYYY_MM_DD fo
 
 # TODOs
 
-* Fix evaluation logic for correct leters in wrong spot, when subsequent guess for another instance of that letter is correct
 * Move consts from types file to constants.ts
 * Add larger list of words
 * Add dictionary/validation to make sure guesses are words before submitting

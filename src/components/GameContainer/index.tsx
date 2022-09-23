@@ -10,7 +10,6 @@ import { stat } from 'fs';
 export default ({}) => {
     
     const {state: {currRow, gameStatus, gameSolution}} = useContext(GameContext);
-    console.log({gameStatus})
 
     return (
         <div className="blurdle-game-container">
@@ -23,5 +22,6 @@ export default ({}) => {
                     numGuesses={currRow+1}
                 />
             }
-        </div>);
+        </div>
+    );
 }

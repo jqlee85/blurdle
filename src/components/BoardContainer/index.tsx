@@ -10,7 +10,7 @@ export interface IBoardContainerProps {
 export default ({
 }:IBoardContainerProps) => {
     
-    const {state: {currRow, rowsState, gameSolution: {wordLength}}, dispatch} = useContext(GameContext);
+    const {state: {currRow, rowsState}} = useContext(GameContext);
 
     return (
         <div className="blurdle-board-container">

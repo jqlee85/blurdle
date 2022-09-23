@@ -1,5 +1,5 @@
 import {Reducer} from 'react';
-import { GameState, IGameAction, ROW_STATUS, GAME_STATUS } from '../../types';
+import { GameState, IGameAction, ROW_STATUS, GAME_STATUS, CHAR_EVALUATED_STATE } from '../../types';
 import evaluateGuess from '../../utils/evaluate-guess';
 
 //@ts-ignore (temporarily ignore next line)
@@ -57,17 +57,30 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
             // Update row with evaluated states
             currentRow.rowStatus = ROW_STATUS.EVALUATED;
 
-            // Update spaces in current row
+            // Update spaces in current row and revealedInfo
             currentRow.spacesStates.forEach((spaceState,i)=>{
                 spaceState.charEvaluatedState = evaluatedGuess.evaluatedChars[i].evaluation;
+                // Mark best info as corret, or wrong spot, depending on conditions
+                if (evaluatedGuess.evaluatedChars[i].evaluation === CHAR_EVALUATED_STATE.CORRECT) {
+                    draft.revealedCharsInfo[spaceState.spaceChar].bestInfo = CHAR_EVALUATED_STATE.CORRECT
+                } else if (
+                    draft.revealedCharsInfo[spaceState.spaceChar].bestInfo !== CHAR_EVALUATED_STATE.CORRECT &&
+                    (
+                        evaluatedGuess.evaluatedChars[i].evaluation === CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK
+                        || evaluatedGuess.evaluatedChars[i].evaluation === CHAR_EVALUATED_STATE.WRONG_SPOT_OUT_OF_STOCK
+                    )
+                ) {
+                    draft.revealedCharsInfo[spaceState.spaceChar].bestInfo = CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK
+                } else if (
+                    evaluatedGuess.evaluatedChars[i].evaluation === CHAR_EVALUATED_STATE.INCORRECT
+                ){
+                    draft.revealedCharsInfo[spaceState.spaceChar].bestInfo = CHAR_EVALUATED_STATE.INCORRECT
+                }
             });            
-
-            // Update bestInfo and keyboard data with best info available for each char
 
             // If win, update game state
             if (evaluatedGuess.isCorrect) {
                 console.log('WON GAME!')
-
                 draft.gameStatus = GAME_STATUS.WON
             }
 
@@ -75,8 +88,6 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
             // If not win, and last row, update game state as loss
             if (!evaluatedGuess.isCorrect && draft.currRow === draft.rowsState.length - 1) {
                 console.log('WRONG GUESS, LOST');
-
-
                 draft.gameStatus = GAME_STATUS.LOST
             }
 
@@ -85,10 +96,6 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
                 console.log('WRONG GUESS, NEXT ROW');
                 draft.currRow++;
             }
-
-            
-
-
             break;
         }
         case 'DISPLAY_VALIDATION_MESSAGE': {

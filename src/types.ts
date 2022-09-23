@@ -14,9 +14,14 @@ export type GamesDataType = {
     [key:string]: GameData;
 }
 
+export type ValidChars = {
+  [key:string]: string[];
+}
+
 export interface GameData {
     wordLength: number;
     solution: string;
+    charSet: string;
 }
 
 export interface Game {
@@ -59,21 +64,16 @@ export type GameStatus =
     gameStatus: GameStatus;
     currRow: number; // Necessary, or should this be derived from rowsState?
     rowsState: RowState[];
-    revealedInfo: RevealedInfo;
+    revealedCharsInfo: RevealedCharsInfo;
     gameSolution: GameSolution;
   }
-  
-  export interface RevealedInfo {
-    charsInfo: CharInfo[];
-  }
+
+  export type RevealedCharsInfo = {
+    [key:string]: CharInfo;
+}
   
   export interface CharInfo {
-    char: Char;
     bestInfo: KeyboardCharEvaluatedState;
-  }
-  
-  export interface ValidChars {
-    charSet: Charset;
   }
   
   export interface GameSolution {
