@@ -8,13 +8,14 @@ export const getDateParam = ():string|null => {
 }
 
 // Gets the current data in the format used to retrieve games
-export const getCurrentDate = ():string => {
-    const date = new Date();
+export const getFormattedDate = (date = new Date()):string => {
     const year = date.toLocaleString("default", { year: "numeric" });
     const month = date.toLocaleString("default", { month: "2-digit" });
     const day = date.toLocaleString("default", { day: "2-digit" });
     return year + "_" + month + "_" + day;
 }
+
+
 
 // Checks that dates are in the expected format: 'YYYY_MM_DD'
 export const isValidDateFormat = (date:string):boolean => {

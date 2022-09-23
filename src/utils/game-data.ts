@@ -1,75 +1,35 @@
 
 
 import {GamesDataType, IGameDataResponse} from "../types";
+import {getFormattedDate} from './date-utils';
+import answers from '../data/answers';
 
-// Temp object containing game data for different dates
+// Generated a list of answers corresponding to date strings
+export const generateGameData = (answers:string[],startDateString:string = '2022_09_21'):GamesDataType => {
+    const nums = startDateString.split('_');
+    const year = parseInt(nums[0]);
+    const month = parseInt(nums[1]);
+    const day = parseInt(nums[2]);
+    let date = new Date(year, month - 1, day);
+    const gamesData:GamesDataType = {}
 
-const gamesData:GamesDataType = {
-    ['2022_09_21']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'BREAD'
-    },
-    ['2022_09_22']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'JOUST'
-    },
-    ['2022_09_23']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'HEARD',
-    },
-    ['2022_09_24']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'LEAST',
-    },
-    ['2022_09_25']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'GREAT'
-    },
-    ['2022_09_26']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'ALGAE'
-    },
-    ['2022_09_27']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'SCOOT',
-    },
-    ['2022_09_28']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'ROAST',
-    },
-    ['2022_09_29']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'WAGON'
-    },
-    ['2022_09_30']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'KOOKY'
-    },
-    ['2022_10_01']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'IONIC',
-    },
-    ['2022_10_02']: {
-        wordLength: 5,
-        charSet: 'EN',
-        solution: 'BRAKE',
-    },
-};
+    answers.forEach((answer,i)=>{
+        if (i > 0) date.setDate(date.getDate() + 1);
+        gamesData[getFormattedDate(date)] = {
+            wordLength: answer.length,
+            charSet: 'EN',
+            solution: answer,
+        }
+    })
+
+    return gamesData;
+}
 
 // Gets the initial game data to populate the board
 export const getGameData = (date:string = '2022_09_21'): IGameDataResponse => {
     
+    const gamesData = generateGameData(answers);
+
     if (!Object.keys(gamesData).includes(date)){
         return {
             type: 'ERROR',

@@ -36,7 +36,6 @@ You can spoof dates by adding a 'date' url param with dates in the YYYY_MM_DD fo
 
 # TODOs
 
-* Move consts from types file to constants.ts
 * TODO fix order issue with multiple letters when some are correct (ex: guessing IIIII for IONIC)
 * Add larger list of words
 * Add dictionary/validation to make sure guesses are words before submitting

@@ -4,7 +4,7 @@ import GameContextProvider from './context/GameContext';
 import GameContainer from './components/GameContainer';
 import {getGameData} from './utils/game-data';
 import {IGameDataResponse, GameData} from './types';
-import {getCurrentDate, getDateParam, isValidDateFormat} from './utils/date-utils';
+import {getFormattedDate, getDateParam, isValidDateFormat} from './utils/date-utils';
 
 function App() {
   
@@ -15,7 +15,7 @@ function App() {
     const dateFromParam = getDateParam();
     const date = (dateFromParam && isValidDateFormat(dateFromParam))
       ? dateFromParam
-      : getCurrentDate();
+      : getFormattedDate();
 
     console.log('date',date)
     setGameDataResponse(getGameData(date));
