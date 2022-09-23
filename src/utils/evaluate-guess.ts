@@ -1,3 +1,4 @@
+import { ifError } from 'assert';
 import { IEvaluatedGuess, CHAR_EVALUATED_STATE } from '../types';
 
 const evaluateGuess = (guess:string, solution:string):IEvaluatedGuess => {
@@ -25,6 +26,9 @@ const evaluateGuess = (guess:string, solution:string):IEvaluatedGuess => {
             }))
         }
     }
+
+    // TODO fix case where a letter is incorrect, but marked yellow BEFORE you get the the correct spot where the letter is correct and that one is marked green
+    // IE: guesses 'EEEEE` for `HEARD`
 
     // Guess is incorrect
     return {
