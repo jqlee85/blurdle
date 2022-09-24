@@ -21,7 +21,7 @@ const Row = ({
             return <Space
                 key={`space-${i}`}
                 spaceState={rowState.spacesStates[i]}
-                disabled={!isActiveRow}
+                rowIndex={rowState.rowIndex}
             />
         })}    
     </div>;

@@ -13,7 +13,9 @@ const BoardContainer = ({
     const {state: {currRow, rowsState}} = useContext(GameContext);
 
     return (
-        <div className="blurdle-board-container">
+        <div
+            className="blurdle-board-container"
+        >
             {rowsState.map((rowState:RowState,i:number)=>{
                 return <Row 
                     key={`row-${i}`}

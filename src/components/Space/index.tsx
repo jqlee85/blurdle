@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
-import { SpaceCharEvaluatedState, SpaceState } from '../../types';
+import { SpaceState } from '../../types';
 import './styles.scss';
+
 
 export interface ISpaceProps {
     spaceState: SpaceState;
-    disabled: boolean;
+    rowIndex: number;
 }
 
 const Space = ({
-    spaceState, 
-    disabled=true,
+    spaceState,
+    rowIndex, 
 }: ISpaceProps ) => {
 
     const {spaceChar, charEvaluatedState, spaceIndex} = spaceState;
-
+    
     return (
         <input 
             className={`blurdle-space evaluated-state_${charEvaluatedState}`}
@@ -21,7 +21,8 @@ const Space = ({
             maxLength={1}
             placeholder='' 
             value={spaceChar}
-            disabled={true}
+            readOnly={true}
+            autoFocus={!!(rowIndex === 0 && spaceIndex === 0)}
         />
     )
 }
