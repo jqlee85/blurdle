@@ -23,7 +23,7 @@ const GameContainer = () => {
                         message: '',
                     }
                 });
-            },1000);
+            },2000);
         }
 
         return ()=>clearTimeout(timer);
