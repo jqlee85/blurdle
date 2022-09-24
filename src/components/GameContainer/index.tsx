@@ -23,7 +23,7 @@ const GameContainer = () => {
                         message: '',
                     }
                 });
-            },2000);
+            },1000);
         }
 
         return ()=>clearTimeout(timer);
@@ -92,9 +92,11 @@ const GameContainer = () => {
             onKeyPress={handleSpaceKeyPress}
             onKeyDown={handleOnKeyDown}
         >
-            <div className="blurdle-validation-error-message">
-                <p>{validationErrorMessage}</p>
-            </div>
+            {validationErrorMessage && (
+                <div className="blurdle-validation-error-message">
+                    <p>{validationErrorMessage}</p>
+                </div>
+            )}   
             <BoardContainer/>
             <Keyboard/>
             {(gameStatus === GAME_STATUS.WON || gameStatus === GAME_STATUS.LOST) &&
