@@ -3,17 +3,28 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: calc(100vw - 1em);
+    width: calc(100% - 1em);
     max-width: 400px;
 
+   
+
     .blurdle-keyboard-row {
-        display: flex;
+        display: grid;
+        column-gap: 4px;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         width: 100%;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 6px;
+        margin-bottom: 2px;
         overflow-x:visible;
+
+        &.blurdle-keyboard-row_1 {
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            width: calc( 90% - 1em);
+            max-width: 400px;
+        }
+
+        &.blurdle-keyboard-row_2 {
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
+        }
     }
 }
 
