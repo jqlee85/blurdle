@@ -11,7 +11,7 @@ import {isValidWord} from '../../data/all-five-letter-words';
 const GameContainer = () => {
     
     const {state: {currRow, gameStatus, gameSolution, rowsState, validationErrorMessage}, dispatch} = useContext(GameContext);
-    
+
     useEffect(()=>{
         let timer: ReturnType<typeof setTimeout>;
 

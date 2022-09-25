@@ -64,10 +64,9 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
             currentRow.rowStatus = ROW_STATUS.EVALUATED;
 
             // Update spaces in current row and revealedInfo
-            // TODO fix order issue with multiple letters when some are correct (ex: guessing IIIII for IONIC)
             currentRow.spacesStates.forEach((spaceState,i)=>{
                 spaceState.charEvaluatedState = evaluatedGuess.evaluatedChars[i].evaluation;
-                // Mark best info as corret, or wrong spot, depending on conditions
+                // Mark best info as correct, or wrong spot, depending on conditions
                 if (evaluatedGuess.evaluatedChars[i].evaluation === CHAR_EVALUATED_STATE.CORRECT) {
                     draft.revealedCharsInfo[spaceState.spaceChar].bestInfo = CHAR_EVALUATED_STATE.CORRECT
                 } else if (

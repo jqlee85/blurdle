@@ -27,43 +27,56 @@ const evaluateGuess = (guess:string, solution:string):IEvaluatedGuess => {
         }
     }
 
-    // TODO fix case where a letter is incorrect, but marked yellow BEFORE you get the the correct spot where the letter is correct and that one is marked green
-    // IE: guesses 'EEEEE` for `HEARD`
-
     // Guess is incorrect
-    return {
-        isCorrect: false,
-        evaluatedChars: guessChars.map((guessChar,i)=>{
 
-            // Default case, character is incorrect
-            let evaluationResult = CHAR_EVALUATED_STATE.INCORRECT;
+    /* First Arrange indexes of chars with the correct chars first, then the rest in their normal order
+    This is so we check correct characters first, and don't mark present ones yellow and then later green if there is a second occurrence
+    NOTE: We have to re-set the order of the evaluated characters later to make sure chars are in the right order */
+    const indexesWithCorrectFirst: number[] = [];
+    guessChars.forEach((guessChar,i)=>{ if (guessChar === solutionChars[i]) indexesWithCorrectFirst.push(i);});
+    guessChars.forEach((guessChar,i)=>{if (guessChar !== solutionChars[i]) indexesWithCorrectFirst.push(i);})
 
-            // If character is correct and in correct location
-            if (guessChar === solutionChars[i]) {
-                evaluationResult = CHAR_EVALUATED_STATE.CORRECT;
+    // Evaluate chars, starting with correct ones
+    const evaluatedChars = indexesWithCorrectFirst.map((i)=>{
+
+        const guessChar = guessChars[i];
+
+        // Default case, character is incorrect
+        let evaluationResult = CHAR_EVALUATED_STATE.INCORRECT;
+
+        // If character is correct and in correct location
+        if (guessChar === solutionChars[i]) {
+            evaluationResult = CHAR_EVALUATED_STATE.CORRECT;
+            remainingSolutionCharsFreqMap[guessChar]--;
+        }
+
+        // If char is in word, but in incorrect location
+        if ( guessChar !== solutionChars[i] && typeof remainingSolutionCharsFreqMap[guessChar] !== 'undefined') {
+            // If letter is "in stock"
+            if ( remainingSolutionCharsFreqMap[guessChar] > 0 ) {
+                evaluationResult = CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK;
+                // Decrement stock count
                 remainingSolutionCharsFreqMap[guessChar]--;
             }
+            // If char location is incorrect and letter is "out of stock"
+            else if ( remainingSolutionCharsFreqMap[guessChar] === 0 ) {
+                evaluationResult = CHAR_EVALUATED_STATE.WRONG_SPOT_OUT_OF_STOCK;
+            }   
+        }
 
-            // If char is in word, but in incorrect location
-            if ( guessChar !== solutionChars[i] && typeof remainingSolutionCharsFreqMap[guessChar] !== 'undefined') {
-                // If letter is "in stock"
-                if ( remainingSolutionCharsFreqMap[guessChar] > 0 ) {
-                    evaluationResult = CHAR_EVALUATED_STATE.WRONG_SPOT_IN_STOCK;
-                    // Decrement stock count
-                    remainingSolutionCharsFreqMap[guessChar]--;
-                }
-                // If char location is incorrect and letter is "out of stock"
-                else if ( remainingSolutionCharsFreqMap[guessChar] === 0 ) {
-                    evaluationResult = CHAR_EVALUATED_STATE.WRONG_SPOT_OUT_OF_STOCK;
-                }   
-            }
+        return {
+            char: guessChar,
+            charIndex: i,
+            evaluation: evaluationResult
+        } 
+    })
+    
+    // Important: Re-sort chars into correct order (since we changed the order above)
+    evaluatedChars.sort((a, b) => (a.charIndex > b.charIndex) ? 1 : -1)
 
-            return {
-                char: guessChar,
-                charIndex: i,
-                evaluation: evaluationResult
-            } 
-        })
+    return {
+        isCorrect: false,
+        evaluatedChars,
     }
 
 }
