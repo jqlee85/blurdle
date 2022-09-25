@@ -14,7 +14,6 @@ You can spoof dates by adding a 'date' url param with dates in the YYYY_MM_DD fo
 
 ## TODOs
 
-* TODO fix order issue with multiple letters when some are correct (ex: guessing IIIII for IONIC)
 * Move word retrieving to API call, fetching solutions from server
 * Move guess evaluation to server (solution only revealed to client-side when game is over)
 * Improve modal (allow closing)
