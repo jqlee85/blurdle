@@ -31,6 +31,12 @@ export const getGameData = (date:string = '2022_09_21'): IGameDataResponse => {
     
     const gamesData = generateGameData(answers);
 
+    // If 'random' passed in for date, generate a random date in the correct range
+    if (date === 'random') {
+        date = Object.keys(gamesData)[Math.floor(Math.random()*Object.keys(gamesData).length)]
+    }
+    
+    // If not random, and date not in the set, return an error
     if (!Object.keys(gamesData).includes(date)){
         return {
             type: 'ERROR',
@@ -38,8 +44,8 @@ export const getGameData = (date:string = '2022_09_21'): IGameDataResponse => {
                 message: `No game data found for the date ${date}`,
             }
         }
-    }
-
+    } 
+    
     const gameData = gamesData[date as keyof GamesDataType]
 
     return {

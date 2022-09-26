@@ -8,6 +8,8 @@ Word solutions list sourced from the public "Wordle" words list (should provide 
 
 You can spoof dates by adding a 'date' url param with dates in the YYYY_MM_DD format like this `?date=2022_09_27`
 
+You can also pass `random` as the `date` param  like this `date=random` to get the solution from a random date (within the valid range).
+
 ### Hosted live on Netlify
 
 [https://jesselee-blurdle.netlify.app/](https://jesselee-blurdle.netlify.app/)

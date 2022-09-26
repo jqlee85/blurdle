@@ -13,7 +13,7 @@ function App() {
   // On mount, fetch the data for the game
   useEffect(()=>{
     const dateFromParam = getDateParam();
-    const date = (dateFromParam && isValidDateFormat(dateFromParam))
+    const date = (dateFromParam && isValidDateFormat(dateFromParam) || dateFromParam === 'random')
       ? dateFromParam
       : getFormattedDate();
 
