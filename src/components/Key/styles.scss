@@ -14,13 +14,11 @@
     }
 
     &.letter-size_lg {
-        // aspect-ratio: 5/1;
-        // width: 50%;
-    }
+        button {
+            font-size: 1em;
+            height: 100%;
+        }
 
-    &.letter-size_md {
-        // aspect-ratio: 12 / 10;
-        // width: 16%;
     }
 
     &.evaluated-state_CORRECT {

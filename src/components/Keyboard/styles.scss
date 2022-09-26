@@ -3,10 +3,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: calc(100% - 1em);
+    width: 100%;
     max-width: 400px;
-
-   
 
     .blurdle-keyboard-row {
         display: grid;
@@ -18,7 +16,7 @@
 
         &.blurdle-keyboard-row_1 {
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-            width: calc( 90% - 1em);
+            width: 90%;
             max-width: 400px;
         }
 
