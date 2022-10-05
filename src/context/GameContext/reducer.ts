@@ -55,6 +55,9 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
             break;
         }
         case 'SUBMIT_GUESS': {
+            
+            // const necessaryChars = draft.necessaryChars;
+            
             const currentRow = draft.rowsState[draft.currRow];
 
             // Evaluate guess
@@ -82,7 +85,31 @@ const gameReducer: Reducer<GameState, IGameAction> = (draft, action) => {
                 ){
                     draft.revealedCharsInfo[spaceState.spaceChar].bestInfo = CHAR_EVALUATED_STATE.INCORRECT
                 }
-            });            
+            });
+
+            // Update the necessaryChars (for hard mode)
+            
+            const tempNecessaryChars = {};
+
+            currentRow.spacesStates.forEach((spaceState,i)=>{
+                
+                const char = spaceState.spaceChar;
+                spaceState.charEvaluatedState = evaluatedGuess.evaluatedChars[i].evaluation;
+
+                // If character is present add to the frequency map
+                if (spaceState.charEvaluatedState !== CHAR_EVALUATED_STATE.INCORRECT) {
+                    if (tempNecessaryChars[char]) {
+                        tempNecessaryChars[char]++;
+                    } else {
+                        tempNecessaryChars[char] = 1;
+                    }
+                }
+
+
+            });
+
+            // Update the game state
+            draft.necessaryChars = tempNecessaryChars;
 
             // If win, update game state
             if (evaluatedGuess.isCorrect) {

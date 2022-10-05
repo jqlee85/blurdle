@@ -5,12 +5,12 @@ import Keyboard from '../Keyboard';
 import {GameContext} from '../../context/GameContext';
 import { GAME_STATUS, VALID_CHARS } from '../../constants';
 import GameOverModal from '../GameOverModal';
-import {isValidWord} from '../../data/all-five-letter-words';
+import {isValidWord, isValidHardModeGuess} from '../../data/all-five-letter-words';
 
 
 const GameContainer = () => {
     
-    const {state: {currRow, gameStatus, gameSolution, rowsState, validationErrorMessage}, dispatch} = useContext(GameContext);
+    const {state: {currRow, gameStatus, gameSolution, rowsState, validationErrorMessage, necessaryChars}, dispatch} = useContext(GameContext);
 
     useEffect(()=>{
         let timer: ReturnType<typeof setTimeout>;
@@ -51,6 +51,14 @@ const GameContainer = () => {
                     type:'WORD_VALIDATION_ERROR',
                     payload: {
                         message: 'Not in word list',
+                    }
+                });
+            }
+            else if ( isValidHardModeGuess(currentGuess, necessaryChars)) {
+                dispatch({
+                    type:'WORD_VALIDATION_ERROR',
+                    payload: {
+                        message: 'You must use letters from your previous guess',
                     }
                 });
             }

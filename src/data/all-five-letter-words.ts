@@ -5798,3 +5798,34 @@ export default allWords;
 export const isValidWord = (word:string):boolean => {
     return allWords.includes(word);
 }
+
+
+// Checks to see if the current guess matches hard mode criteria
+export const isValidHardModeGuess = (
+    word:string,
+    necessaryChars: any, // Map which tracks frequency of characters ex: { A: 1, T:1 }
+):boolean => {
+    
+    const tempNecessaryChars = {...necessaryChars};
+
+    // Iterate over letter, checking agains the necessaryChars
+    word.split('').forEach((letter,i) => {
+
+        // If found character in necessaryChars, decrement the value
+        if ( necessaryChars[letter] > 0 ) {
+            necessaryChars[letter]--;
+        }
+
+        // Remove from map if count gets to zero
+        if ( necessaryChars[letter] === 0 ) {
+            delete necessaryChars[letter];
+        }
+
+    })
+
+    if (Object.keys(necessaryChars).length < 1) return true;
+
+    return false;
+
+}
+
