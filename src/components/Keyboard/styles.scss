@@ -8,10 +8,10 @@
 
     .blurdle-keyboard-row {
         display: grid;
-        column-gap: 4px;
+        column-gap: 8px;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         width: 100%;
-        margin-bottom: 2px;
+        margin-bottom: 4px;
         overflow-x:visible;
 
         &.blurdle-keyboard-row_1 {
